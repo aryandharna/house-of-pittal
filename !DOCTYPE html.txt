@@ -1,0 +1,2154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pittal House — Handcrafted Brass & Copper</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --gold: #C9973A;
+      --gold-light: #E8C068;
+      --gold-pale: #F5E6C0;
+      --brass-dark: #8B6914;
+      --cream: #FAF6EE;
+      --charcoal: #1C1A16;
+      --warm-grey: #6B6458;
+      --copper: #B87333;
+      --border: rgba(201,151,58,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.6;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background: var(--charcoal);
+      color: var(--gold-pale);
+      text-align: center;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      padding: 10px;
+      text-transform: uppercase;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250,246,238,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 60px;
+      height: 74px;
+    }
+
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.35rem;
+      letter-spacing: 0.1em;
+      color: var(--charcoal);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo .logo-icon {
+      width: 34px; height: 34px;
+      background: linear-gradient(135deg, var(--gold), var(--copper));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--warm-grey);
+      text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-actions button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--warm-grey);
+      font-size: 1.1rem;
+      transition: color 0.3s;
+    }
+
+    .nav-actions button:hover { color: var(--gold); }
+
+    .cart-btn {
+      background: var(--gold) !important;
+      color: var(--charcoal) !important;
+      border-radius: 50% !important;
+      width: 38px !important;
+      height: 38px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-size: 0.9rem !important;
+      position: relative;
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -5px; right: -5px;
+      background: var(--charcoal);
+      color: var(--gold-pale);
+      font-size: 0.6rem;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 500;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 70px 80px 80px;
+      position: relative;
+    }
+
+    .hero-left::before {
+      content: 'पीतल';
+      position: absolute;
+      font-family: serif;
+      font-size: 22rem;
+      color: rgba(201,151,58,0.06);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .hero-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 40px; height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--charcoal);
+      margin-bottom: 28px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-desc {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: var(--warm-grey);
+      max-width: 420px;
+      margin-bottom: 48px;
+      font-weight: 300;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: var(--charcoal);
+      color: var(--gold-pale);
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold);
+      color: var(--charcoal);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--charcoal);
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 15px 36px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-item { text-align: left; }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--warm-grey);
+      margin-top: 6px;
+    }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+      background: var(--charcoal);
+    }
+
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(201,151,58,0.15) 0%, transparent 60%);
+    }
+
+    .hero-img-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      height: 100%;
+      gap: 3px;
+    }
+
+    .hero-img {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-img:first-child {
+      grid-row: span 2;
+    }
+
+    .hero-img .img-inner {
+      width: 100%; height: 100%;
+      transition: transform 0.6s ease;
+    }
+
+    .hero-img:hover .img-inner { transform: scale(1.05); }
+
+    /* SVG Brass item illustrations */
+    .brass-svg {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      background: var(--gold);
+      padding: 14px 0;
+      overflow: hidden;
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      animation: marquee 22s linear infinite;
+      white-space: nowrap;
+    }
+
+    .marquee-item {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--charcoal);
+      padding: 0 40px;
+      display: flex; align-items: center; gap: 16px;
+    }
+
+    .marquee-item::before { content: '✦'; font-size: 0.6rem; }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      text-align: center;
+      padding: 0 20px;
+      margin-bottom: 60px;
+    }
+
+    .section-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .section-tag::before, .section-tag::after {
+      content: '';
+      width: 30px; height: 1px;
+      background: var(--gold);
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      color: var(--charcoal);
+      line-height: 1.2;
+    }
+
+    .section-title em { font-style: italic; color: var(--gold); }
+
+    /* ── CATEGORIES ── */
+    .categories {
+      padding: 100px 80px;
+    }
+
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 50px;
+    }
+
+    .cat-card {
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: var(--charcoal);
+      group: hover;
+    }
+
+    .cat-bg {
+      position: absolute;
+      inset: 0;
+      transition: transform 0.5s ease;
+    }
+
+    .cat-card:hover .cat-bg { transform: scale(1.08); }
+
+    .cat-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(28,26,22,0.85) 0%, rgba(28,26,22,0.1) 60%);
+    }
+
+    .cat-info {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 30px 24px;
+      transform: translateY(8px);
+      transition: transform 0.4s;
+    }
+
+    .cat-card:hover .cat-info { transform: translateY(0); }
+
+    .cat-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .cat-count {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+
+    .cat-arrow {
+      position: absolute;
+      top: 20px; right: 20px;
+      width: 36px; height: 36px;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 0.8rem;
+    }
+
+    .cat-card:hover .cat-arrow { opacity: 1; }
+
+    /* ── PRODUCTS ── */
+    .products {
+      padding: 100px 80px;
+      background: #F5F0E8;
+    }
+
+    .prod-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 50px;
+      border: 1px solid var(--border);
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .prod-tab {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 12px 30px;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--warm-grey);
+      transition: all 0.3s;
+      border-right: 1px solid var(--border);
+    }
+
+    .prod-tab:last-child { border-right: none; }
+
+    .prod-tab.active {
+      background: var(--charcoal);
+      color: var(--gold-pale);
+    }
+
+    .prod-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+    }
+
+    .prod-card {
+      background: #fff;
+      position: relative;
+      cursor: pointer;
+      transition: box-shadow 0.3s;
+    }
+
+    .prod-card:hover {
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    }
+
+    .prod-img {
+      aspect-ratio: 1;
+      overflow: hidden;
+      position: relative;
+      background: var(--cream);
+    }
+
+    .prod-img svg {
+      width: 100%; height: 100%;
+      transition: transform 0.5s;
+    }
+
+    .prod-card:hover .prod-img svg { transform: scale(1.05); }
+
+    .prod-badge {
+      position: absolute;
+      top: 12px; left: 12px;
+      background: var(--gold);
+      color: var(--charcoal);
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 600;
+    }
+
+    .prod-wish {
+      position: absolute;
+      top: 12px; right: 12px;
+      width: 30px; height: 30px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 0.8rem;
+    }
+
+    .prod-card:hover .prod-wish { opacity: 1; }
+
+    .prod-info { padding: 20px; }
+
+    .prod-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 6px;
+    }
+
+    .prod-meta {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--warm-grey);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .prod-price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .prod-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    .prod-add {
+      background: var(--charcoal);
+      color: var(--gold-pale);
+      border: none;
+      padding: 8px 16px;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'Raleway', sans-serif;
+      transition: background 0.3s;
+    }
+
+    .prod-add:hover { background: var(--gold); color: var(--charcoal); }
+
+    /* ── CRAFTSMANSHIP BANNER ── */
+    .craft-banner {
+      background: var(--charcoal);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 500px;
+      overflow: hidden;
+    }
+
+    .craft-left {
+      padding: 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .craft-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .craft-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3.5rem);
+      font-weight: 300;
+      color: var(--gold-pale);
+      line-height: 1.2;
+      margin-bottom: 28px;
+    }
+
+    .craft-desc {
+      font-size: 0.92rem;
+      line-height: 1.9;
+      color: rgba(245,230,192,0.6);
+      max-width: 380px;
+      margin-bottom: 40px;
+      font-weight: 300;
+    }
+
+    .craft-right {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(201,151,58,0.08);
+      overflow: hidden;
+    }
+
+    .craft-right::before {
+      content: '';
+      position: absolute;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,151,58,0.2);
+      animation: pulse 4s ease infinite;
+    }
+
+    .craft-right::after {
+      content: '';
+      position: absolute;
+      width: 450px; height: 450px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,151,58,0.1);
+      animation: pulse 4s ease infinite 1s;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.6; }
+    }
+
+    /* ── FEATURES ── */
+    .features {
+      padding: 100px 80px;
+    }
+
+    .feat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      margin-top: 60px;
+    }
+
+    .feat-item {
+      text-align: center;
+      padding: 40px 20px;
+      border: 1px solid var(--border);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .feat-item:hover {
+      border-color: var(--gold);
+      transform: translateY(-6px);
+    }
+
+    .feat-icon {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-pale), rgba(201,151,58,0.1));
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 1.4rem;
+    }
+
+    .feat-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 12px;
+    }
+
+    .feat-desc {
+      font-size: 0.82rem;
+      line-height: 1.8;
+      color: var(--warm-grey);
+      font-weight: 300;
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials {
+      background: var(--charcoal);
+      padding: 100px 80px;
+    }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 60px;
+    }
+
+    .testi-card {
+      border: 1px solid rgba(201,151,58,0.2);
+      padding: 40px;
+      position: relative;
+    }
+
+    .testi-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      color: var(--gold);
+      opacity: 0.3;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .testi-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--gold-pale);
+      line-height: 1.8;
+      margin-bottom: 30px;
+      font-weight: 300;
+    }
+
+    .testi-stars {
+      color: var(--gold);
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      margin-bottom: 16px;
+    }
+
+    .testi-author {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .testi-location {
+      font-size: 0.7rem;
+      color: rgba(245,230,192,0.4);
+      margin-top: 4px;
+    }
+
+    /* ── NEWSLETTER ── */
+    .newsletter {
+      padding: 100px 80px;
+      text-align: center;
+      background: var(--gold-pale);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .newsletter::before {
+      content: '✦';
+      position: absolute;
+      font-size: 20rem;
+      color: rgba(201,151,58,0.08);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .newsletter-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      color: var(--charcoal);
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .newsletter-desc {
+      font-size: 0.92rem;
+      color: var(--warm-grey);
+      max-width: 480px;
+      margin: 0 auto 40px;
+      line-height: 1.8;
+      position: relative;
+    }
+
+    .newsletter-form {
+      display: flex;
+      max-width: 480px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      padding: 16px 24px;
+      border: 1px solid var(--border);
+      background: #fff;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.85rem;
+      outline: none;
+      color: var(--charcoal);
+    }
+
+    .newsletter-input:focus { border-color: var(--gold); }
+
+    .newsletter-btn {
+      background: var(--charcoal);
+      color: var(--gold-pale);
+      border: none;
+      padding: 16px 28px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .newsletter-btn:hover { background: var(--gold); color: var(--charcoal); }
+
+    /* ── CONTACT SECTION ── */
+    .contact {
+      padding: 100px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+    }
+
+    .contact-left h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--charcoal);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .contact-left p {
+      font-size: 0.9rem;
+      line-height: 1.9;
+      color: var(--warm-grey);
+      font-weight: 300;
+      margin-bottom: 40px;
+    }
+
+    .contact-items { display: flex; flex-direction: column; gap: 28px; }
+
+    .contact-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .contact-icon {
+      width: 46px; height: 46px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+      color: var(--gold);
+    }
+
+    .contact-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .contact-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--charcoal);
+    }
+
+    .contact-right { display: flex; flex-direction: column; gap: 16px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+
+    .form-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--warm-grey);
+    }
+
+    .form-control {
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      background: var(--cream);
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.87rem;
+      color: var(--charcoal);
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .form-control:focus { border-color: var(--gold); }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--charcoal);
+      padding: 70px 80px 30px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 60px;
+      padding-bottom: 50px;
+      border-bottom: 1px solid rgba(201,151,58,0.15);
+    }
+
+    .footer-brand .logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.3rem;
+      color: var(--gold-pale);
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    .footer-brand p {
+      font-size: 0.82rem;
+      line-height: 1.9;
+      color: rgba(245,230,192,0.5);
+      font-weight: 300;
+      margin-bottom: 28px;
+    }
+
+    .footer-socials { display: flex; gap: 10px; }
+
+    .social-btn {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(201,151,58,0.25);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold);
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 0.85rem;
+      text-decoration: none;
+    }
+
+    .social-btn:hover {
+      background: var(--gold);
+      color: var(--charcoal);
+    }
+
+    .footer-col h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+
+    .footer-col ul li a {
+      font-size: 0.82rem;
+      color: rgba(245,230,192,0.5);
+      text-decoration: none;
+      transition: color 0.3s;
+      font-weight: 300;
+    }
+
+    .footer-col ul li a:hover { color: var(--gold); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 28px;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(245,230,192,0.3);
+    }
+
+    .footer-pay {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .pay-badge {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(201,151,58,0.15);
+      padding: 5px 12px;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: rgba(245,230,192,0.4);
+      text-transform: uppercase;
+    }
+
+    /* ── CART DRAWER ── */
+    .cart-drawer {
+      position: fixed;
+      top: 0; right: -420px;
+      width: 420px;
+      height: 100vh;
+      background: #fff;
+      z-index: 1000;
+      transition: right 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -10px 0 60px rgba(0,0,0,0.1);
+    }
+
+    .cart-drawer.open { right: 0; }
+
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(28,26,22,0.5);
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s;
+    }
+
+    .cart-overlay.open { opacity: 1; pointer-events: all; }
+
+    .cart-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 28px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cart-header h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      color: var(--charcoal);
+    }
+
+    .cart-close {
+      width: 32px; height: 32px;
+      background: none;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--warm-grey);
+      transition: all 0.3s;
+    }
+
+    .cart-close:hover { background: var(--charcoal); color: var(--gold-pale); border-color: var(--charcoal); }
+
+    .cart-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 28px;
+    }
+
+    .cart-empty {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .cart-empty .empty-icon { font-size: 3rem; margin-bottom: 16px; }
+
+    .cart-empty p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--warm-grey);
+      font-style: italic;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cart-item-img {
+      width: 70px; height: 70px;
+      background: var(--cream);
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .cart-item-info { flex: 1; }
+
+    .cart-item-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+    }
+
+    .cart-item-price {
+      font-size: 0.85rem;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .cart-item-rm {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--warm-grey);
+      font-size: 1rem;
+      padding: 4px;
+      transition: color 0.3s;
+    }
+
+    .cart-item-rm:hover { color: #c0392b; }
+
+    .cart-footer {
+      padding: 24px 28px;
+      border-top: 1px solid var(--border);
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .cart-total-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--warm-grey);
+    }
+
+    .cart-total-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    .cart-checkout {
+      width: 100%;
+      background: var(--charcoal);
+      color: var(--gold-pale);
+      border: none;
+      padding: 16px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .cart-checkout:hover { background: var(--gold); color: var(--charcoal); }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 30px; left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--charcoal);
+      color: var(--gold-pale);
+      padding: 14px 28px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      z-index: 2000;
+      transition: transform 0.4s;
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* ── PAGE SECTIONS NAV ── */
+    .page-sections {
+      display: none;
+    }
+
+    /* ── SETTINGS PAGE ── */
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .main-page.active {
+      display: block;
+    }
+
+    .main-page {
+      display: none;
+    }
+
+    .settings-page {
+      padding: 80px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .settings-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+    }
+
+    .settings-sub {
+      font-size: 0.85rem;
+      color: var(--warm-grey);
+      margin-bottom: 50px;
+    }
+
+    .settings-sections { display: flex; flex-direction: column; gap: 40px; }
+
+    .settings-section {
+      border: 1px solid var(--border);
+      padding: 36px;
+    }
+
+    .settings-section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .settings-section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .settings-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .settings-row:last-child { border-bottom: none; }
+
+    .settings-row-label {
+      font-size: 0.88rem;
+      color: var(--charcoal);
+      font-weight: 400;
+    }
+
+    .settings-row-hint {
+      font-size: 0.75rem;
+      color: var(--warm-grey);
+      margin-top: 3px;
+    }
+
+    /* Toggle */
+    .toggle {
+      width: 46px; height: 24px;
+      background: #ddd;
+      border-radius: 12px;
+      cursor: pointer;
+      position: relative;
+      transition: background 0.3s;
+      border: none;
+      flex-shrink: 0;
+    }
+
+    .toggle.on { background: var(--gold); }
+
+    .toggle::after {
+      content: '';
+      position: absolute;
+      width: 18px; height: 18px;
+      background: #fff;
+      border-radius: 50%;
+      top: 3px; left: 3px;
+      transition: left 0.3s;
+    }
+
+    .toggle.on::after { left: 25px; }
+
+    .select-control {
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      background: var(--cream);
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.82rem;
+      color: var(--charcoal);
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* ── HERO SECTION VISIBLE BY DEFAULT ── */
+    #home-section { display: block; }
+
+    @media (max-width: 1200px) {
+      nav { padding: 0 40px; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-right { height: 400px; }
+      .hero-left { padding: 60px 40px; }
+      .cat-grid, .prod-grid, .feat-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .craft-banner { grid-template-columns: 1fr; }
+      .craft-right { height: 300px; }
+      .contact { grid-template-columns: 1fr; gap: 50px; }
+      .testi-grid { grid-template-columns: 1fr; gap: 20px; }
+      .categories, .products, .features, .testimonials, .newsletter, .contact { padding: 60px 40px; }
+      footer { padding: 60px 40px 30px; }
+      .settings-page { padding: 60px 40px; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .cat-grid, .prod-grid, .feat-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .categories, .products, .features, .testimonials, .newsletter, .contact { padding: 50px 20px; }
+      footer { padding: 50px 20px 30px; }
+      .settings-page { padding: 40px 20px; }
+      .cart-drawer { width: 100%; right: -100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✦ Added to cart</div>
+
+<!-- CART OVERLAY -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+<!-- CART DRAWER -->
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-body" id="cartBody">
+    <div class="cart-empty">
+      <div class="empty-icon">🏺</div>
+      <p>Your cart is empty</p>
+    </div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total">
+      <span class="cart-total-label">Total</span>
+      <span class="cart-total-val" id="cartTotal">₹0</span>
+    </div>
+    <button class="cart-checkout">Proceed to Checkout →</button>
+  </div>
+</div>
+
+<!-- TOP BAR -->
+<div class="topbar">✦ Free shipping across India on orders above ₹999 ✦ Authentic Handcrafted Brass Since 1987 ✦</div>
+
+<!-- NAVBAR -->
+<nav>
+  <a class="nav-logo" href="#" onclick="showSection('home')">
+    <div class="logo-icon">🏺</div>
+    Pittal House
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showSection('home')">Home</a></li>
+    <li><a href="#categories">Collections</a></li>
+    <li><a href="#products">Shop</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#" onclick="showSection('settings')">Settings</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button onclick="showSection('home')">🔍</button>
+    <button onclick="showSection('settings')">👤</button>
+    <button class="cart-btn" onclick="openCart()">
+      🛒
+      <span class="cart-badge" id="cartCount">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════ HOME PAGE ═══════════════════════════════ -->
+<div id="home-section">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">New Arrivals 2025</div>
+      <h1 class="hero-title">
+        The Art of<br/>
+        <em>Handcrafted</em><br/>
+        Brass & Copper
+      </h1>
+      <p class="hero-desc">
+        Discover our curated collection of authentic pittal (brass) artifacts — each piece individually crafted by master artisans, carrying centuries of Indian heritage into your home.
+      </p>
+      <div class="hero-btns">
+        <a href="#products" class="btn-primary">Explore Collection</a>
+        <a href="#about" class="btn-outline">Our Story</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">38+</div>
+          <div class="stat-label">Years of Craft</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">1200+</div>
+          <div class="stat-label">Products</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">50K+</div>
+          <div class="stat-label">Happy Customers</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-img-grid">
+        <div class="hero-img">
+          <div class="img-inner brass-svg">
+            <svg viewBox="0 0 300 600" xmlns="http://www.w3.org/2000/svg">
+              <rect width="300" height="600" fill="#1C1A16"/>
+              <ellipse cx="150" cy="300" rx="90" ry="200" fill="url(#g1)" opacity="0.9"/>
+              <ellipse cx="150" cy="130" rx="55" ry="30" fill="url(#g2)"/>
+              <rect x="120" y="100" width="60" height="20" rx="5" fill="#C9973A"/>
+              <ellipse cx="150" cy="480" rx="75" ry="20" fill="url(#g2)" opacity="0.6"/>
+              <defs>
+                <radialGradient id="g1" cx="40%" cy="40%">
+                  <stop offset="0%" stop-color="#E8C068"/>
+                  <stop offset="50%" stop-color="#C9973A"/>
+                  <stop offset="100%" stop-color="#8B6914"/>
+                </radialGradient>
+                <radialGradient id="g2">
+                  <stop offset="0%" stop-color="#F5E6C0"/>
+                  <stop offset="100%" stop-color="#C9973A"/>
+                </radialGradient>
+              </defs>
+              <text x="150" y="310" text-anchor="middle" font-size="80" fill="rgba(255,255,255,0.05)" font-family="serif">🏺</text>
+            </svg>
+          </div>
+        </div>
+        <div class="hero-img">
+          <div class="img-inner brass-svg">
+            <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+              <rect width="300" height="300" fill="#2A2118"/>
+              <circle cx="150" cy="150" r="100" fill="url(#g3)" opacity="0.8"/>
+              <circle cx="150" cy="150" r="70" fill="none" stroke="#C9973A" stroke-width="2" opacity="0.5"/>
+              <circle cx="150" cy="150" r="40" fill="none" stroke="#E8C068" stroke-width="1" opacity="0.4"/>
+              <defs>
+                <radialGradient id="g3">
+                  <stop offset="0%" stop-color="#E8C068"/>
+                  <stop offset="100%" stop-color="#8B6914"/>
+                </radialGradient>
+              </defs>
+              <text x="150" y="165" text-anchor="middle" font-size="60" fill="rgba(255,255,255,0.1)">🪔</text>
+            </svg>
+          </div>
+        </div>
+        <div class="hero-img">
+          <div class="img-inner brass-svg">
+            <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+              <rect width="300" height="300" fill="#16130F"/>
+              <path d="M150 50 Q200 100 200 150 Q200 220 150 260 Q100 220 100 150 Q100 100 150 50Z" fill="url(#g4)"/>
+              <defs>
+                <linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#F5E6C0"/>
+                  <stop offset="40%" stop-color="#C9973A"/>
+                  <stop offset="100%" stop-color="#8B6914"/>
+                </linearGradient>
+              </defs>
+              <text x="150" y="175" text-anchor="middle" font-size="60" fill="rgba(255,255,255,0.1)">🫙</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span class="marquee-item">Handcrafted Brass Diyas</span>
+      <span class="marquee-item">Traditional Lota Sets</span>
+      <span class="marquee-item">Decorative Thalis</span>
+      <span class="marquee-item">Antique Urlis</span>
+      <span class="marquee-item">Brass Idols</span>
+      <span class="marquee-item">Copper Water Vessels</span>
+      <span class="marquee-item">Puja Accessories</span>
+      <span class="marquee-item">Home Décor</span>
+      <!-- duplicate for infinite scroll -->
+      <span class="marquee-item">Handcrafted Brass Diyas</span>
+      <span class="marquee-item">Traditional Lota Sets</span>
+      <span class="marquee-item">Decorative Thalis</span>
+      <span class="marquee-item">Antique Urlis</span>
+      <span class="marquee-item">Brass Idols</span>
+      <span class="marquee-item">Copper Water Vessels</span>
+      <span class="marquee-item">Puja Accessories</span>
+      <span class="marquee-item">Home Décor</span>
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <section class="categories" id="categories">
+    <div class="section-header">
+      <div class="section-tag">Browse By</div>
+      <h2 class="section-title">Our <em>Collections</em></h2>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card">
+        <div class="cat-bg">
+          <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+            <rect width="300" height="400" fill="#2A1F0A"/>
+            <ellipse cx="150" cy="200" rx="80" ry="160" fill="url(#cg1)" opacity="0.85"/>
+            <defs><radialGradient id="cg1" cx="35%" cy="35%"><stop offset="0%" stop-color="#F5E6C0"/><stop offset="60%" stop-color="#C9973A"/><stop offset="100%" stop-color="#4A3000"/></radialGradient></defs>
+          </svg>
+        </div>
+        <div class="cat-overlay"></div>
+        <div class="cat-arrow">→</div>
+        <div class="cat-info">
+          <div class="cat-name">Puja Essentials</div>
+          <div class="cat-count">142 Products</div>
+        </div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-bg">
+          <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+            <rect width="300" height="400" fill="#1A1200"/>
+            <circle cx="150" cy="200" r="120" fill="url(#cg2)" opacity="0.8"/>
+            <circle cx="150" cy="200" r="80" fill="none" stroke="#C9973A" stroke-width="3" opacity="0.4"/>
+            <defs><radialGradient id="cg2"><stop offset="0%" stop-color="#E8C068"/><stop offset="70%" stop-color="#8B6914"/><stop offset="100%" stop-color="#1A1200"/></radialGradient></defs>
+          </svg>
+        </div>
+        <div class="cat-overlay"></div>
+        <div class="cat-arrow">→</div>
+        <div class="cat-info">
+          <div class="cat-name">Kitchenware</div>
+          <div class="cat-count">98 Products</div>
+        </div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-bg">
+          <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+            <rect width="300" height="400" fill="#120E00"/>
+            <path d="M60 300 Q150 50 240 300 Z" fill="url(#cg3)" opacity="0.9"/>
+            <defs><linearGradient id="cg3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F5E6C0"/><stop offset="50%" stop-color="#C9973A"/><stop offset="100%" stop-color="#4A3000"/></linearGradient></defs>
+          </svg>
+        </div>
+        <div class="cat-overlay"></div>
+        <div class="cat-arrow">→</div>
+        <div class="cat-info">
+          <div class="cat-name">Home Décor</div>
+          <div class="cat-count">215 Products</div>
+        </div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-bg">
+          <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+            <rect width="300" height="400" fill="#200D00"/>
+            <rect x="90" y="80" width="120" height="240" rx="60" fill="url(#cg4)" opacity="0.9"/>
+            <defs><radialGradient id="cg4" cx="30%" cy="30%"><stop offset="0%" stop-color="#FFD97A"/><stop offset="60%" stop-color="#B87333"/><stop offset="100%" stop-color="#4A2000"/></radialGradient></defs>
+          </svg>
+        </div>
+        <div class="cat-overlay"></div>
+        <div class="cat-arrow">→</div>
+        <div class="cat-info">
+          <div class="cat-name">Gifting Sets</div>
+          <div class="cat-count">67 Products</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products" id="products">
+    <div class="section-header">
+      <div class="section-tag">Handpicked For You</div>
+      <h2 class="section-title">Featured <em>Products</em></h2>
+    </div>
+    <div class="prod-tabs">
+      <button class="prod-tab active" onclick="filterTab(this)">All</button>
+      <button class="prod-tab" onclick="filterTab(this)">Diyas</button>
+      <button class="prod-tab" onclick="filterTab(this)">Vessels</button>
+      <button class="prod-tab" onclick="filterTab(this)">Décor</button>
+      <button class="prod-tab" onclick="filterTab(this)">Gifting</button>
+    </div>
+    <div class="prod-grid" id="prodGrid">
+      <!-- Product cards generated by JS -->
+    </div>
+  </section>
+
+  <!-- CRAFTSMANSHIP BANNER -->
+  <section class="craft-banner" id="about">
+    <div class="craft-left">
+      <div class="craft-tag">Our Heritage</div>
+      <h2 class="craft-title">38 Years of<br/>Artisan Excellence</h2>
+      <p class="craft-desc">
+        Every piece in our collection is hand-beaten, polished, and finished by master craftsmen in the workshops of Moradabad and Ludhiana. We source only the finest grade brass and copper alloys.
+      </p>
+      <a href="#contact" class="btn-primary" style="width:fit-content">Get in Touch</a>
+    </div>
+    <div class="craft-right">
+      <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="position:relative;z-index:1">
+        <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(201,151,58,0.4)" stroke-width="1"/>
+        <circle cx="100" cy="100" r="60" fill="none" stroke="rgba(201,151,58,0.3)" stroke-width="1"/>
+        <circle cx="100" cy="100" r="30" fill="rgba(201,151,58,0.15)" stroke="rgba(201,151,58,0.5)" stroke-width="1"/>
+        <text x="100" y="115" text-anchor="middle" font-size="36" fill="#C9973A" opacity="0.8">🏺</text>
+        <text x="100" y="170" text-anchor="middle" font-size="10" fill="#C9973A" letter-spacing="3" font-family="Cinzel,serif">PITTAL HOUSE</text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="section-header">
+      <div class="section-tag">Why Choose Us</div>
+      <h2 class="section-title">The Pittal <em>Promise</em></h2>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-item">
+        <div class="feat-icon">🚚</div>
+        <div class="feat-title">Free Shipping</div>
+        <p class="feat-desc">Complimentary delivery on all orders above ₹999 across India, handled with utmost care.</p>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon">🔒</div>
+        <div class="feat-title">100% Authentic</div>
+        <p class="feat-desc">Every product comes with a certificate of authenticity verifying genuine brass or copper composition.</p>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon">↩️</div>
+        <div class="feat-title">Easy Returns</div>
+        <p class="feat-desc">Hassle-free 15-day returns policy. We stand behind the quality of every single piece.</p>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon">💬</div>
+        <div class="feat-title">Expert Support</div>
+        <p class="feat-desc">Our brass specialists are available 7 days a week to help you find the perfect piece.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="section-header">
+      <div class="section-tag" style="color:var(--gold-light)">Customer Stories</div>
+      <h2 class="section-title" style="color:var(--gold-pale)">Voices of <em>Trust</em></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">The brass urli I ordered exceeded every expectation. The craftsmanship is museum-quality, and it arrived beautifully packaged. A true heirloom piece.</p>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-author">Priya Sharma</div>
+        <div class="testi-location">New Delhi</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Ordered a puja thali set as a wedding gift. The family was absolutely thrilled. The quality is outstanding and the packaging made it feel very premium.</p>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-author">Rajesh Mehta</div>
+        <div class="testi-location">Mumbai</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">I've been searching for authentic brass diyas for years. Pittal House finally delivered — the patina, weight, and craftsmanship are everything I hoped for.</p>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-author">Ananya Iyer</div>
+        <div class="testi-location">Bangalore</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter">
+    <h2 class="newsletter-title">Join the Pittal Circle</h2>
+    <p class="newsletter-desc">Subscribe to receive exclusive offers, new arrivals, and stories from our craftsmen delivered to your inbox.</p>
+    <div class="newsletter-form">
+      <input type="email" class="newsletter-input" placeholder="Your email address"/>
+      <button class="newsletter-btn" onclick="subscribe()">Subscribe</button>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-left">
+      <h2>Get in <em style="font-style:italic;color:var(--gold)">Touch</em></h2>
+      <p>Have a question about a product, a custom order, or need assistance with your purchase? Our team of brass specialists is here to help.</p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Address</div>
+            <div class="contact-val">Brass Market, Ghumar Mandi, Ludhiana, Punjab 141001</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">Phone</div>
+            <div class="contact-val">+91 98765 43210</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="741c1118181b34041d000015181c1b0107115a1d1a">[email&#160;protected]</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <div class="contact-label">Hours</div>
+            <div class="contact-val">Mon–Sat: 9AM – 7PM IST</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-right">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">First Name</label>
+          <input type="text" class="form-control" placeholder="Arjun"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last Name</label>
+          <input type="text" class="form-control" placeholder="Singh"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" placeholder="arjun@example.com"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Phone</label>
+        <input type="tel" class="form-control" placeholder="+91 98765 43210"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Subject</label>
+        <select class="form-control select-control">
+          <option>Product Inquiry</option>
+          <option>Custom Order</option>
+          <option>Order Status</option>
+          <option>Returns & Refunds</option>
+          <option>Wholesale</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message</label>
+        <textarea class="form-control" placeholder="Tell us how we can help…"></textarea>
+      </div>
+      <button class="btn-primary" onclick="sendMsg()" style="width:100%;text-align:center">Send Message →</button>
+    </div>
+  </section>
+
+</div>
+<!-- END HOME PAGE -->
+
+<!-- ═══════════════════════════════ SETTINGS PAGE ═══════════════════════════════ -->
+<div id="settings-section" style="display:none">
+  <div class="settings-page">
+    <h1 class="settings-title">Account Settings</h1>
+    <p class="settings-sub">Manage your profile, preferences, and account details</p>
+
+    <div class="settings-sections">
+
+      <!-- Profile -->
+      <div class="settings-section">
+        <div class="settings-section-title">👤 Profile Information</div>
+        <div class="form-row" style="margin-bottom:16px">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-control" value="Arjun"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-control" value="Singh"/>
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:16px">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-control" value="arjun@example.com"/>
+        </div>
+        <div class="form-group" style="margin-bottom:24px">
+          <label class="form-label">Phone Number</label>
+          <input type="tel" class="form-control" value="+91 98765 43210"/>
+        </div>
+        <button class="btn-primary">Save Changes</button>
+      </div>
+
+      <!-- Notifications -->
+      <div class="settings-section">
+        <div class="settings-section-title">🔔 Notifications</div>
+        <div class="settings-row">
+          <div>
+            <div class="settings-row-label">Order Updates</div>
+            <div class="settings-row-hint">Receive shipping & delivery notifications</div>
+          </div>
+          <button class="toggle on" onclick="this.classList.toggle('on')"></button>
+        </div>
+        <div class="settings-row">
+          <div>
+            <div class="settings-row-label">New Arrivals</div>
+            <div class="settings-row-hint">Be first to know about new collections</div>
+          </div>
+          <button class="toggle on" onclick="this.classList.toggle('on')"></button>
+        </div>
+        <div class="settings-row">
+          <div>
+            <div class="settings-row-label">Offers & Discounts</div>
+            <div class="settings-row-hint">Exclusive deals for members</div>
+          </div>
+          <button class="toggle" onclick="this.classList.toggle('on')"></button>
+        </div>
+        <div class="settings-row">
+          <div>
+            <div class="settings-row-label">SMS Alerts</div>
+            <div class="settings-row-hint">Text message notifications on your phone</div>
+          </div>
+          <button class="toggle" onclick="this.classList.toggle('on')"></button>
+        </div>
+      </div>
+
+      <!-- Preferences -->
+      <div class="settings-section">
+        <div class="settings-section-title">⚙️ Preferences</div>
+        <div class="settings-row">
+          <div>
+            <div class="settings-row-label">Currency</div>
+            <div class="settings-row-hint">Display prices in your preferred currency</div>
+          </div>
+          <select class="select-control">
+            <option>INR (₹)</option>
+            <option>USD ($)</option>
+            <option>GBP (£)</option>
+            <option>AED (د.إ)</option>
+          </select>
+        </div>
+        <div class="settings-row">
+          <div>
+            <div class="settings-row-label">Language</div>
+            <div class="settings-row-hint">Interface language</div>
+          </div>
+          <select class="select-control">
+            <option>English</option>
+            <option>Hindi</option>
+            <option>Punjabi</option>
+          </select>
+        </div>
+        <div class="settings-row">
+          <div>
+            <div class="settings-row-label">Newsletter Frequency</div>
+          </div>
+          <select class="select-control">
+            <option>Weekly</option>
+            <option>Bi-weekly</option>
+            <option>Monthly</option>
+            <option>Never</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Security -->
+      <div class="settings-section">
+        <div class="settings-section-title">🔐 Security</div>
+        <div class="form-group" style="margin-bottom:16px">
+          <label class="form-label">Current Password</label>
+          <input type="password" class="form-control" placeholder="••••••••"/>
+        </div>
+        <div class="form-row" style="margin-bottom:24px">
+          <div class="form-group">
+            <label class="form-label">New Password</label>
+            <input type="password" class="form-control" placeholder="••••••••"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" placeholder="••••••••"/>
+          </div>
+        </div>
+        <div class="settings-row">
+          <div>
+            <div class="settings-row-label">Two-Factor Authentication</div>
+            <div class="settings-row-hint">Extra security for your account</div>
+          </div>
+          <button class="toggle" onclick="this.classList.toggle('on')"></button>
+        </div>
+        <div style="margin-top:24px">
+          <button class="btn-primary">Update Password</button>
+        </div>
+      </div>
+
+      <!-- Danger zone -->
+      <div class="settings-section" style="border-color:rgba(192,57,43,0.2)">
+        <div class="settings-section-title" style="color:#c0392b">⚠️ Danger Zone</div>
+        <div class="settings-row">
+          <div>
+            <div class="settings-row-label">Delete Account</div>
+            <div class="settings-row-hint">Permanently remove your account and all data</div>
+          </div>
+          <button class="btn-outline" style="color:#c0392b;border-color:#c0392b;font-size:0.72rem;padding:8px 20px;letter-spacing:0.1em;text-transform:uppercase" onclick="alert('Account deletion requires email confirmation.')">Delete</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- END SETTINGS -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo">🏺 Pittal House</div>
+      <p>Celebrating India's ancient tradition of brass and copper craftsmanship. Every piece tells a story of skill, culture, and heritage passed down through generations.</p>
+      <div class="footer-socials">
+        <a class="social-btn" href="#">f</a>
+        <a class="social-btn" href="#">in</a>
+        <a class="social-btn" href="#">ig</a>
+        <a class="social-btn" href="#">yt</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">Puja Essentials</a></li>
+        <li><a href="#">Kitchenware</a></li>
+        <li><a href="#">Home Décor</a></li>
+        <li><a href="#">Gifting Sets</a></li>
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Sale</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Track My Order</a></li>
+        <li><a href="#">Returns & Refunds</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Care Instructions</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Artisans</a></li>
+        <li><a href="#">Wholesale</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Pittal House. All rights reserved. Made with ♥ in India.</div>
+    <div class="footer-pay">
+      <span class="pay-badge">UPI</span>
+      <span class="pay-badge">Razorpay</span>
+      <span class="pay-badge">COD</span>
+      <span class="pay-badge">EMI</span>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ── PRODUCTS DATA ──
+  const products = [
+    { id:1, name:'Decorative Brass Diya', meta:'Hand Beaten Brass', price:'₹899', badge:'Bestseller', cat:'Diyas', emoji:'🪔' },
+    { id:2, name:'Copper Lota Set (3 pcs)', meta:'Pure Copper', price:'₹1,499', badge:'New', cat:'Vessels', emoji:'🫙' },
+    { id:3, name:'Antique Brass Urli', meta:'Traditional Craft', price:'₹2,299', badge:'', cat:'Décor', emoji:'🏺' },
+    { id:4, name:'Puja Thali Set', meta:'Brass & Copper', price:'₹3,499', badge:'Gift', cat:'Gifting', emoji:'🎁' },
+    { id:5, name:'Diyas Set of 6', meta:'Hand Polished Brass', price:'₹749', badge:'Sale', cat:'Diyas', emoji:'🪔' },
+    { id:6, name:'Brass Kalash with Lid', meta:'Premium Grade Brass', price:'₹1,999', badge:'', cat:'Vessels', emoji:'🏺' },
+    { id:7, name:'Wall Hanging Ganesha', meta:'Brass Relief Art', price:'₹4,299', badge:'New', cat:'Décor', emoji:'🎨' },
+    { id:8, name:'Corporate Gift Box', meta:'Brass + Copper Set', price:'₹5,999', badge:'Gift', cat:'Gifting', emoji:'📦' },
+  ];
+
+  let cart = [];
+
+  function renderProducts(items) {
+    const grid = document.getElementById('prodGrid');
+    grid.innerHTML = items.map(p => `
+      <div class="prod-card">
+        <div class="prod-img">
+          <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+            <rect width="300" height="300" fill="#FAF6EE"/>
+            <text x="150" y="175" text-anchor="middle" font-size="100">${p.emoji}</text>
+          </svg>
+          ${p.badge ? `<div class="prod-badge">${p.badge}</div>` : ''}
+          <div class="prod-wish" onclick="wishlist(event)">♡</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-name">${p.name}</div>
+          <div class="prod-meta">${p.meta}</div>
+          <div class="prod-price-row">
+            <div class="prod-price">${p.price}</div>
+            <button class="prod-add" onclick="addToCart(${p.id})">Add +</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  renderProducts(products);
+
+  function filterTab(el) {
+    document.querySelectorAll('.prod-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    const filter = el.textContent;
+    renderProducts(filter === 'All' ? products : products.filter(p => p.cat === filter));
+  }
+
+  function addToCart(id) {
+    const p = products.find(x => x.id === id);
+    const existing = cart.find(x => x.id === id);
+    if (existing) existing.qty++;
+    else cart.push({ ...p, qty: 1 });
+    updateCartUI();
+    showToast('✦ ' + p.name + ' added to cart');
+  }
+
+  function updateCartUI() {
+    const count = cart.reduce((s, i) => s + i.qty, 0);
+    document.getElementById('cartCount').textContent = count;
+    const total = cart.reduce((s, i) => s + (parseInt(i.price.replace(/[₹,]/g,'')) * i.qty), 0);
+    document.getElementById('cartTotal').textContent = '₹' + total.toLocaleString('en-IN');
+    const body = document.getElementById('cartBody');
+    const footer = document.getElementById('cartFooter');
+    if (cart.length === 0) {
+      body.innerHTML = '<div class="cart-empty"><div class="empty-icon">🏺</div><p>Your cart is empty</p></div>';
+      footer.style.display = 'none';
+    } else {
+      body.innerHTML = cart.map(i => `
+        <div class="cart-item">
+          <div class="cart-item-img"><span style="font-size:2rem">${i.emoji}</span></div>
+          <div class="cart-item-info">
+            <div class="cart-item-name">${i.name}</div>
+            <div class="cart-item-price">${i.price} × ${i.qty}</div>
+          </div>
+          <button class="cart-item-rm" onclick="removeCart(${i.id})">✕</button>
+        </div>
+      `).join('');
+      footer.style.display = 'block';
+    }
+  }
+
+  function removeCart(id) {
+    cart = cart.filter(i => i.id !== id);
+    updateCartUI();
+  }
+
+  function openCart() { document.getElementById('cartDrawer').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); }
+  function closeCart() { document.getElementById('cartDrawer').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+  }
+
+  function wishlist(e) {
+    e.stopPropagation();
+    e.currentTarget.textContent = e.currentTarget.textContent === '♡' ? '♥' : '♡';
+    e.currentTarget.style.color = e.currentTarget.textContent === '♥' ? 'var(--gold)' : '';
+  }
+
+  function subscribe() {
+    const inp = document.querySelector('.newsletter-input');
+    if (inp.value) {
+      showToast('✦ Welcome to the Pittal Circle!');
+      inp.value = '';
+    } else {
+      inp.focus();
+    }
+  }
+
+  function sendMsg() {
+    showToast('✦ Message sent! We\'ll reply within 24 hours.');
+  }
+
+  function showSection(section) {
+    document.getElementById('home-section').style.display
